@@ -50,6 +50,7 @@ Solutions:
 		Input parameters: k: the number of nearest neighbors to be found
 		clone the git repo and from the folder ```.../data_engineer/nearest_star/```  run the command
 		```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors
+	Check the q1.png image for runtime metrics.
 
 2. Steps:
 	k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
@@ -82,3 +83,4 @@ Solutions:
 	    Implemented Option 4's algorithm
 		A service to get k closest stars to a given star has been implemented using the library annoy. clone the git repo and from the folder ```.../data_engineer/nearest_star/``` run the command ```pip install annoy```
 		preprocess the data using the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars_pre_process.py``` and then run the query ```python3 knn_query.py 10 Sol```
+	Check the q4_option4.png for runtime metrics.
