@@ -31,7 +31,7 @@ Assumptions:
 5. The second line in the file is always the sun's entry
 6. We know that the coordinates of the sun are ```(0.000005, 0.0, 0.0)```
 7. Distance is measured by euclidean distance
-8. No adversial user
+8. No adversial user, all the parameters to the program are in order and of the correct type
 9. Argument k is an integer
 
 Solutions: 
@@ -47,8 +47,9 @@ Solutions:
 	Total Space Complexity: O(k) 
 	
 	Run Instructions:
+		Input parameters: k: the number of nearest neighbors to be found
 		clone the git repo and from the folder ```.../data_engineer/nearest_star/```  run the command
-		```gunzip -c hygdata_v3.csv.gz | python3 k_nearest_stars.py 10```
+		```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors
 
 2. Steps:
 	k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
@@ -76,6 +77,8 @@ Solutions:
 			  requrires preprocessing the data
 
 	Run Instructions: 
+		Input Parameters: k : the number of nearest neighbors to be found
+						  point_star: the name of the star whose neighbors are to be found.
 	    Implemented Option 4's algorithm
 		A service to get k closest stars to a given star has been implemented using the library annoy. clone the git repo and from the folder ```.../data_engineer/nearest_star/``` run the command ```pip install annoy```
-		preprocess the data using the command ``` ```
+		preprocess the data using the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars_pre_process.py``` and then run the query ```python3 knn_query.py 10 Sol```
