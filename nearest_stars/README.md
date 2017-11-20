@@ -35,9 +35,33 @@ Assumptions:
 Solutions: 
 
 1. Steps:
-	1.1 Stream through the data from stdin
+	1.1 Stream through the data from stdin (time complexity O(n))
 	1.2 As we stream through the data keep a k sized max heap
 	1.3 If the new data distance is less than or equal to the max element of the max heap, push the new data distance
-		and pop the maximum element from the max heap
-	1.4 The max heap contains the k closest points to the sun
+		and pop the maximum element from the max heap (time complexity 2 x O(logk))
+	1.4 The max heap contains the k closest points to the sun (space complexity O(k))
 	1.5 We keep a has map with {distance, [list of stars at that distance]} for some convenient print methods
+
+	Total Time Complexity: O(nlogk)
+	Total Space Complexity: O(k) 
+
+2. Steps:
+	k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have quite a few options each with its pros and cons.
+	Option 1: Follow solution 1 approach and loop through the list keeping a k sized max heap.
+		pros: Guaranteed correct result
+		cons: time complexity O(nlogk), for large number of start(n) performance may suffer
+	Option 2: Use a kd-tree structure to map the coordinates into 3d space.
+		pros: time complexity of O(log n)
+		cons: give approximate nearest neighbors, may miss some neighbors (reference: ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` , ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` and ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```) 
+			  requires pre processing the data
+	Option 3: scikit learn knn
+		pros: stable library
+		cons: does not scale well to large datasets
+			  approximate algorithm
+			  training required
+	Option 4: Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` used to find nearest 			neighbors in high dimensions, uses kd-tree along with priority queue approach.
+		pros: easy to use and widely addopted
+			  Uses static file (small size) as indexes
+			  reasonably accurate (Was tested on the HYG-database and produced correct results)
+		cons: Not an exact matching algorithm
+			  
