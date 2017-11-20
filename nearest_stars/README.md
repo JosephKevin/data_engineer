@@ -23,9 +23,21 @@ https://github.com/astronexus/HYG-Database
 	temptation is too great.
 
 Assumptions:
-	1. The x, y, z coordinates are always decimal numbers and not empty
-	2. The x, y, z coordinates are always on the 17, 18, 19 indexes of the input file and star name field in at index 6
-	3. The suns name is 'Sol' reference: ```http://earthsky.org/space/what-is-the-suns-name```
-	4. The input file always has field names in the first line
-	5. The second line in the file is always the sun's entry
-	6. We know that the coordinates of the sun are ```(0.000005, 0.0, 0.0)```
+
+1. The x, y, z coordinates are always decimal numbers and not empty
+2. The x, y, z coordinates are always on the 17, 18, 19 indexes of the input file and star name field in at index 6
+3. The suns name is 'Sol' reference: ```http://earthsky.org/space/what-is-the-suns-name```
+4. The input file always has field names in the first line
+5. The second line in the file is always the sun's entry
+6. We know that the coordinates of the sun are ```(0.000005, 0.0, 0.0)```
+7. Distance is measured by euclidean distance
+
+Solutions: 
+
+1. Steps:
+	1.1 Stream through the data from stdin
+	1.2 As we stream through the data keep a k sized max heap
+	1.3 If the new data distance is less than or equal to the max element of the max heap, push the new data distance
+		and pop the maximum element from the max heap
+	1.4 The max heap contains the k closest points to the sun
+	1.5 We keep a has map with {distance, [list of stars at that distance]} for some convenient print methods
