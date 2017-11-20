@@ -37,6 +37,7 @@ https://github.com/astronexus/HYG-Database
 
 ## Solutions: 
 
+## Question 1
 1. Steps:
 	1. Stream through the data from stdin (time complexity O(n))
 	2. As we stream through the data keep a k sized max heap
@@ -50,6 +51,7 @@ https://github.com/astronexus/HYG-Database
 		2. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors.
    Check the q1.png image for runtime metrics.
 
+## Question 2
 2. Steps:
 	k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
 
