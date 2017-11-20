@@ -59,22 +59,21 @@ https://github.com/astronexus/HYG-Database
 
 	***Option 2:*** Use a kd-tree structure to map the coordinates into 3d space.
 	* pros: time complexity of O(log n)
-			* cons: give approximate nearest neighbors, may miss some neighbors (reference: ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` , ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` and ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```) 
-			  requires pre processing the data
+	* cons: give approximate nearest neighbors, may miss some neighbors (reference: ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` , ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` and ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```)  requires pre processing the data
 
 	***Option 3:*** scikit learn knn
-			* pros: stable library
-			* cons: does not scale well to large datasets
-			  approximate algorithm
-			  training required
+	* pros: stable library
+	* cons: does not scale well to large datasets approximate algorithm training required
 
 	***Option 4:*** Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` and 							```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```used to find nearest neighbors in high dimensions, uses 		kd-tree along with priority queue approach. Start a micro service and keep the service running with the index or data in memory this can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
-			* pros: easy to use and widely addopted
-			  Uses static file (small size) as indexes
-			  reasonably accurate (Was tested on the HYG-database and produced correct results)
-			* cons: Not an exact matching algorithm
-			  requires preprocessing the data
-	Run Instructions: Implemented Option 4's algorithm
+	* pros: 
+		* easy to use and widely addopted
+		* Uses static file (small size) as indexes
+		* reasonably accurate (Was tested on the HYG-database and produced correct results)
+	* cons: 
+		* Not an exact matching algorithm
+		* requires preprocessing the data
+	* Run Instructions: Implemented Option 4's algorithm
 		1. Input Parameters: k : the number of nearest neighbors to be found
 						  point_star: the name of the star whose neighbors are to be found.    
 			A service to get k closest stars to a given star has been implemented using the library annoy. 
