@@ -41,7 +41,9 @@ Solutions Explanation:
 
 2. Steps:
 	2.1. Inner join customers and orders on customer_id with a where clause on quantity not equal to 0
-	2.2. Group by name and order_date
+	2.2. Group by name and order_date and sum the quantity
 	2.3. Use Lag window function with partition by name and order by order_date to get the change amount every day
 	2.4. Rank the value from the previous step from highest absolute value to lowest absolute value
 	2.5. Keep only the top ranked entry for each name, order_date pair
+
+	CTE was used since the solution was required to be one query.
