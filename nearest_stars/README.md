@@ -54,12 +54,12 @@ https://github.com/astronexus/HYG-Database
 	k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
 
 	***Option 1:*** Follow solution 1 approach and loop through the list keeping a k sized max heap.
-		pros: Guaranteed correct result
-		cons: time complexity O(nlogk), for large number of start(n) performance may suffer
+		⋅⋅* pros: Guaranteed correct result
+		⋅⋅* cons: time complexity O(nlogk), for large number of start(n) performance may suffer
 
 	***Option 2:*** Use a kd-tree structure to map the coordinates into 3d space.
-		pros: time complexity of O(log n)
-		cons: give approximate nearest neighbors, may miss some neighbors (reference: ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` , ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` and ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```) 
+		⋅⋅* pros: time complexity of O(log n)
+		⋅⋅* cons: give approximate nearest neighbors, may miss some neighbors (reference: ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` , ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` and ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```) 
 			  requires pre processing the data
 
 	***Option 3:*** scikit learn knn
@@ -73,7 +73,7 @@ https://github.com/astronexus/HYG-Database
 			  Uses static file (small size) as indexes
 			  reasonably accurate (Was tested on the HYG-database and produced correct results)
 		cons: Not an exact matching algorithm
-			  requrires preprocessing the data
+			  requires preprocessing the data
 
 	Run Instructions: 
 		Input Parameters: k : the number of nearest neighbors to be found
