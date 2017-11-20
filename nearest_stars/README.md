@@ -59,9 +59,8 @@ Solutions:
 		cons: does not scale well to large datasets
 			  approximate algorithm
 			  training required
-	Option 4: Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` used to find nearest 			neighbors in high dimensions, uses kd-tree along with priority queue approach.
+	Option 4: Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` and 							```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```used to find nearest neighbors in high dimensions, uses 		kd-tree along with priority queue approach.
 		pros: easy to use and widely addopted
 			  Uses static file (small size) as indexes
 			  reasonably accurate (Was tested on the HYG-database and produced correct results)
 		cons: Not an exact matching algorithm
-			  
