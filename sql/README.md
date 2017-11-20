@@ -32,10 +32,10 @@ DATETIME[YYYY-MM-DD], customer_id INT)
 	COMPANY_B 2016-01-02 15
 
 ## Data Assumptions:
-	1. customer_id of orders table has a foreign key with reference to customer_id in the customers table.
+1. customer_id of orders table has a foreign key with reference to customer_id in the customers table.
 
 ## Solutions Explanation:
-	Please check the solutions.sql file for the queries
+Please check the solutions.sql file for the queries
 1. Steps:
 ⋅⋅1. Inner join customers and orders table on customer_id.
 ⋅⋅2. Group by name and use MAX(order_date) to get the latest order date.
