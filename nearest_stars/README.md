@@ -52,8 +52,7 @@ https://github.com/astronexus/HYG-Database
    Check the q1.png image for runtime metrics.
 
 ## Question 2
-1. Steps:
-	k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
+1. k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
 
 	***Option 1:*** Follow solution 1 approach and loop through the list keeping a k sized max heap.
 	* pros: Guaranteed correct result
