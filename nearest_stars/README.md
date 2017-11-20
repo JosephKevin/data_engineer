@@ -47,28 +47,28 @@ https://github.com/astronexus/HYG-Database
 	Total Space Complexity: O(k) 
 	6. Run Instructions: Input parameters: k: the number of nearest neighbors to be found:
 		1. clone the git repo and from the folder ```.../data_engineer/nearest_star/```  
-		2. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors
+		2. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors.
    Check the q1.png image for runtime metrics.
 
 2. Steps:
 	k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
 
-	Option 1: Follow solution 1 approach and loop through the list keeping a k sized max heap.
+	***Option 1:*** Follow solution 1 approach and loop through the list keeping a k sized max heap.
 		pros: Guaranteed correct result
 		cons: time complexity O(nlogk), for large number of start(n) performance may suffer
 
-	Option 2: Use a kd-tree structure to map the coordinates into 3d space.
+	***Option 2:*** Use a kd-tree structure to map the coordinates into 3d space.
 		pros: time complexity of O(log n)
 		cons: give approximate nearest neighbors, may miss some neighbors (reference: ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` , ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` and ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```) 
 			  requires pre processing the data
 
-	Option 3: scikit learn knn
+	***Option 3:*** scikit learn knn
 		pros: stable library
 		cons: does not scale well to large datasets
 			  approximate algorithm
 			  training required
 
-	Option 4: Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` and 							```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```used to find nearest neighbors in high dimensions, uses 		kd-tree along with priority queue approach. Start a micro service and keep the service running with the index or data in memory this can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
+	***Option 4:*** Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` and 							```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```used to find nearest neighbors in high dimensions, uses 		kd-tree along with priority queue approach. Start a micro service and keep the service running with the index or data in memory this can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
 		pros: easy to use and widely addopted
 			  Uses static file (small size) as indexes
 			  reasonably accurate (Was tested on the HYG-database and produced correct results)
