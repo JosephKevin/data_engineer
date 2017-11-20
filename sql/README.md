@@ -1,5 +1,6 @@
-README
+# README
 
+## Questions:
 Using the following tables:
 
 customers (customer_id INT, name VARCHAR)
@@ -30,20 +31,20 @@ DATETIME[YYYY-MM-DD], customer_id INT)
 	COMPANY_A 2016-01-03 -23
 	COMPANY_B 2016-01-02 15
 
-Data Assumptions:
+## Data Assumptions:
 	1. customer_id of orders table has a foreign key with reference to customer_id in the customers table.
 
-Solutions Explanation:
+## Solutions Explanation:
 	Please check the solutions.sql file for the queries
 1. Steps:
-	1.1. Inner join customers and orders table on customer_id.
-	1.2. Group by name and use MAX(order_date) to get the latest order date.
+⋅⋅1. Inner join customers and orders table on customer_id.
+⋅⋅2. Group by name and use MAX(order_date) to get the latest order date.
 
 2. Steps:
-	2.1. Inner join customers and orders on customer_id with a where clause on quantity not equal to 0
-	2.2. Group by name and order_date and sum the quantity
-	2.3. Use Lag window function with partition by name and order by order_date to get the change amount every day
-	2.4. Rank the value from the previous step from highest absolute value to lowest absolute value
-	2.5. Keep only the top ranked entry for each name, order_date pair
+⋅⋅1. Inner join customers and orders on customer_id with a where clause on quantity not equal to 0
+⋅⋅2. Group by name and order_date and sum the quantity
+⋅⋅3. Use Lag window function with partition by name and order by order_date to get the change amount every day
+⋅⋅4. Rank the value from the previous step from highest absolute value to lowest absolute value
+⋅⋅5. Keep only the top ranked entry for each name, order_date pair
 
 	CTE was used since the solution was required to be one query.
