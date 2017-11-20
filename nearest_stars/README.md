@@ -47,9 +47,9 @@ https://github.com/astronexus/HYG-Database
 	Total Space Complexity: O(k) 
 	
 ***Run Instructions:***
-Input parameters: k: the number of nearest neighbors to be found
-1. clone the git repo and from the folder ```.../data_engineer/nearest_star/```  
-2. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors
+Input parameters: k: the number of nearest neighbors to be found:
+	1. clone the git repo and from the folder ```.../data_engineer/nearest_star/```  
+	2. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors
    Check the q1.png image for runtime metrics.
 
 2. Steps:
