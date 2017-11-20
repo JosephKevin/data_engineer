@@ -31,6 +31,8 @@ Assumptions:
 5. The second line in the file is always the sun's entry
 6. We know that the coordinates of the sun are ```(0.000005, 0.0, 0.0)```
 7. Distance is measured by euclidean distance
+8. No adversial user
+9. Argument k is an integer
 
 Solutions: 
 
