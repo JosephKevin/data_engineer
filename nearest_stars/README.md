@@ -1,6 +1,7 @@
-README
+# README
 
-Nearest Stars
+
+## Nearest Stars
 Version 3 of the HYG star database contains almost 120,000 stars. You can download it and
 find field descriptions here:
 https://github.com/astronexus/HYG-Database
@@ -22,7 +23,7 @@ https://github.com/astronexus/HYG-Database
 	Describe how you would design your solution. You don’t need implement it, unless the
 	temptation is too great.
 
-Assumptions:
+## Assumptions:
 
 1. The x, y, z coordinates are always decimal numbers and not empty
 2. The x, y, z coordinates are always on the 17, 18, 19 indexes of the input file and star name field in at index 6
@@ -34,23 +35,22 @@ Assumptions:
 8. No adversial user, all the parameters to the program are in order and of the correct type
 9. Argument k is an integer
 
-Solutions: 
+## Solutions: 
 
 1. Steps:
-	1.1 Stream through the data from stdin (time complexity O(n))
-	1.2 As we stream through the data keep a k sized max heap
-	1.3 If the new data distance is less than or equal to the max element of the max heap, push the new data distance
-		and pop the maximum element from the max heap (time complexity 2 x O(logk))
-	1.4 The max heap contains the k closest points to the sun (space complexity O(k))
-	1.5 We keep a has map with {distance, [list of stars at that distance]} for some convenient print methods
+	1. Stream through the data from stdin (time complexity O(n))
+	2. As we stream through the data keep a k sized max heap
+	3. If the new data distance is less than or equal to the max element of the max heap, push the new data distance and pop the maximum element from the max heap (time complexity 2 x O(logk))
+	4. The max heap contains the k closest points to the sun (space complexity O(k))
+	5. We keep a has map with {distance, [list of stars at that distance]} for some convenient print methods
 	Total Time Complexity: O(nlogk)
 	Total Space Complexity: O(k) 
 	
-	Run Instructions:
-		Input parameters: k: the number of nearest neighbors to be found
-		clone the git repo and from the folder ```.../data_engineer/nearest_star/```  run the command
-		```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors
-	Check the q1.png image for runtime metrics.
+***Run Instructions:***
+Input parameters: k: the number of nearest neighbors to be found
+1. clone the git repo and from the folder ```.../data_engineer/nearest_star/```  
+2. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors
+   Check the q1.png image for runtime metrics.
 
 2. Steps:
 	k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
@@ -70,7 +70,7 @@ Solutions:
 			  approximate algorithm
 			  training required
 
-	Option 4: Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` and 							```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```used to find nearest neighbors in high dimensions, uses 		kd-tree along with priority queue approach. Start a micro service and keep the service running with the index or data in memory this can do lookups in O(log(n)+k) time
+	Option 4: Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` and 							```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```used to find nearest neighbors in high dimensions, uses 		kd-tree along with priority queue approach. Start a micro service and keep the service running with the index or data in memory this can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
 		pros: easy to use and widely addopted
 			  Uses static file (small size) as indexes
 			  reasonably accurate (Was tested on the HYG-database and produced correct results)
