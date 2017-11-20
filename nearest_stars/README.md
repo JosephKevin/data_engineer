@@ -59,13 +59,21 @@ https://github.com/astronexus/HYG-Database
 
 	***Option 2:*** Use a kd-tree structure to map the coordinates into 3d space.
 	* pros: time complexity of O(log n)
-	* cons: give approximate nearest neighbors, may miss some neighbors (reference: ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` , ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` and ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```)  requires pre processing the data
+	* cons: 
+		* give approximate nearest neighbors, may miss some neighbors
+		* requires pre processing the data
+	* reference: 
+		* ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` 
+		* ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` 
+		* ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```
 
 	***Option 3:*** scikit learn knn
 	* pros: stable library
 	* cons: does not scale well to large datasets approximate algorithm training required
+	* reference:
+		* ```http://scikit-learn.org/stable/modules/neighbors.html```
 
-	***Option 4:*** Open source library ```annoy``` reference: ```https://github.com/spotify/annoy``` and 							```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```used to find nearest neighbors in high dimensions, uses 		kd-tree along with priority queue approach. Start a micro service and keep the service running with the index or data in memory this can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
+	***Option 4:*** Open source library ```annoy``` is used to find nearest neighbors in high dimensions, uses kd-tree along with priority queue approach. If we start a micro service and keep the service running with the index or data in memory we can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
 	* pros: 
 		* easy to use and widely addopted
 		* Uses static file (small size) as indexes
@@ -73,6 +81,9 @@ https://github.com/astronexus/HYG-Database
 	* cons: 
 		* Not an exact matching algorithm
 		* requires preprocessing the data
+	* reference:
+		* ```https://github.com/spotify/annoy``` 
+		* ```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```
 	* Run Instructions: Implemented Option 4's algorithm
 		1. Input Parameters: k : the number of nearest neighbors to be found
 						  point_star: the name of the star whose neighbors are to be found.    
