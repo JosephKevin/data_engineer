@@ -37,14 +37,14 @@ DATETIME[YYYY-MM-DD], customer_id INT)
 ## Solutions Explanation:
 Please check the solutions.sql file for the queries
 1. Steps:
-⋅⋅⋅1. Inner join customers and orders table on customer_id.
-⋅⋅⋅2. Group by name and use MAX(order_date) to get the latest order date.
+	1. Inner join customers and orders table on customer_id.
+	2. Group by name and use MAX(order_date) to get the latest order date.
 
 2. Steps:
-⋅⋅1. Inner join customers and orders on customer_id with a where clause on quantity not equal to 0
-⋅⋅2. Group by name and order_date and sum the quantity
-⋅⋅3. Use Lag window function with partition by name and order by order_date to get the change amount every day
-⋅⋅4. Rank the value from the previous step from highest absolute value to lowest absolute value
-⋅⋅5. Keep only the top ranked entry for each name, order_date pair
+	1. Inner join customers and orders on customer_id with a where clause on quantity not equal to 0
+	2. Group by name and order_date and sum the quantity
+	3. Use Lag window function with partition by name and order by order_date to get the change amount every day
+	4. Rank the value from the previous step from highest absolute value to lowest absolute value
+	5. Keep only the top ranked entry for each name, order_date pair
 
 	CTE was used since the solution was required to be one query.
