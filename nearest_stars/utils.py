@@ -30,7 +30,7 @@ def parse_line(line, x=17, y=18, z=19, name_idx=6):
 	line_lst = line.strip().split(',')
 	return line_lst[name_idx], float(line_lst[x]), float(line_lst[y]), float(line_lst[z]) 
 
-def skip_line(num_line = 1):
+def skip_line(num_line=1):
 	"""
 	Function to skip lines when reading from stdin
 
