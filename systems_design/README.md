@@ -83,7 +83,7 @@ The processing and ingest layer pushed data into this layer. We can store it in 
 ![Design Doc](./query_service.pdf)
 
 ### Serverless query layer:
-A serverless architecture was chosen. The function that gets invoked on a query request, will parse the url, form the appropriate db query, query the database layer in the collection service and send the response over as a JSON.
+A serverless architecture was chosen. The function that gets invoked on a query request, will parse the url, form the appropriate db query, query the database layer to the collection service writes and send the response over as a JSON.
 
 ***pros:***
 * Easy to scale
