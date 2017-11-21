@@ -34,7 +34,7 @@ https://github.com/astronexus/HYG-Database
 8. No adversial user, all the parameters to the program are in order and of the correct type
 9. Argument k is an integer
 
-##Solution to question1
+## Solution to question1
 1. Stream through the data from stdin (time complexity O(n))
 2. As we stream through the data keep a k sized max heap
 3. If a new point distance is less than or equal to the max element of the max heap, push the new data distance and pop the maximum element from the max heap (time complexity 2 x O(logk))
