@@ -77,8 +77,22 @@ Then the data at key, date and hour_of_day level is pushed into a database
 * The hour level aggregation will only be performed after the hour is complete, which means that there is a lag time of more than an hour between real time and data in our database layer.
 
 ### Database layer:
-The processing and ingest layer pushed data into this layer. We can store it in a highly available, distributed and scalable database (eg: bigquery, redshift)
+The processing and ingest layer pushed data into this layer. We can store it in a highly available, distributed and scalable database (eg: bigquery, redshift) We need to make sure the data is properly indexed for quick reads.
 
 ## Solution for query service:
 ![Design Doc](./query_service.pdf)
+
+### Serverless query layer:
+A serverless architecture was chosen. The function that gets invoked on a query request, will parse the url, form the appropriate db query, query the database layer in the collection service and send the response over as a JSON.
+
+***pros:***
+* Easy to scale
+* If AWS Lambda or Google Cloud Function is used, these services are managed and do not require lot of developer hours
+
+***cons:***
+* vendor lock in, ie the service is highly dependent on the vendor(eg google or AWS)
+
+
+## Problems:
+As we increase utilization of the system by 10x, 100x, 1000x the collection service may break at the link between the collection layer and the processing and ingest layer, because the processing and ingest layer may not be able to keep up with the incoming volume. In such a case we can hash the incoming keys into different topics in the collection layer and keep a seperate processing and ingest layer for the topics but ultimately all the processing and ingest layer writes to the same databse layer. This is an involved effort, if we use a managed service we do not have to spend a lot of time tuning the scaling issues.
 
