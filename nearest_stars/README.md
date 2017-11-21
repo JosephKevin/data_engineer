@@ -61,9 +61,11 @@ To create a findstars service with quick response time. We must  do the pre proc
 
 ### Run Instructions:
 Steps 1 and 2 can be skipped if already performed question1
-***Input parameters:*** k: the number of nearest neighbors to be found
+***Input parameters:*** 
 	* k: the number of nearest neighbors to be found
-	* 
+	* x: the x coordinate of the query point
+	* y: the y coordinate of the query point
+	* z: the z coordinate of the query point
 1. clone the git repo
 2. CD to the directory ```.../data_engineer/nearest_star/``` 
 3. Preprocess the data using the command
@@ -73,7 +75,7 @@ Steps 1 and 2 can be skipped if already performed question1
 2. ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` 
 3. ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` 
 
-### Other options:
+### Other option for question2:
 1. Since our dimensions are small kd-tree will be sufficient, but for higher dimensions we can consider another advanced options. ***annoy*** is used to find nearest neighbors in high dimensions, uses kd-tree along with priority queue approach. If we start a micro service and keep the service running with the data in memory we can do quick approximate lookups.
 	* pros: 
 		* easy to use and widely addopted
