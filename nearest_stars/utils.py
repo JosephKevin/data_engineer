@@ -17,6 +17,19 @@ def save_as_pickle(data, pickle_file):
 	pickle.dump(data, pickle_out)
 	pickle_out.close()
 
+def read_pickle_obj(pickle_file):
+	"""
+	Function to read in a pickle file and return its data
+
+	Args:
+		pickle_file: the location of the pickle file
+
+	Returns:
+		data: the data stored in the pickle file
+	"""
+	pickle_in = open(pickle_file,'rb')
+	return pickle.load(pickle_in)
+
 def euclidean_dist(x, y):
 	"""
 	Function to calculate euclidean distance
