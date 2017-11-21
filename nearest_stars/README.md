@@ -53,11 +53,14 @@ https://github.com/astronexus/HYG-Database
    Check the q1.png image for runtime metrics.
 
 ## Solution to question2
-To create a findstars service with quick response time. We must  do the pre processing of data before hand and only run a quick lookup against the preprocessed data for a query. A suitable data structure to store spatial data for small dimensions(dimensions< 20) for quick lookup is kd-tree. 
+To create a findstars service with quick response time. We must  do the pre processing of data before hand and only run a quick lookup against the preprocessed data for a query. A suitable data structure to store spatial data for small dimensions(dimensions< 20) for quick lookup is kd-tree.
 1. Construct a kd tree from the stars data. ***Time complexity: O(nlogn)***
 2. Store the processed data in the disk.
 3. Start a micro service to serve query request and keep the processed in memory for quick access. ***Space complexity: O(n)***
 4. Respond to a query for k nearest neighbors quickly. ***Time complexity: O(logn)***
+
+### Design:
+![Alt text](./q2_design.pdf)
 
 ### Run Instructions:
 Steps 1 and 2 can be skipped if already performed question1
