@@ -70,8 +70,8 @@ def driver(k, point_star):
 	Returns:
 		No Return
 	"""
-	max_heap, star_dist = find_k_nearest(k = k, point_star = sun)
-	print_elements(max_heap, star_dist, k = k)
+	max_heap, star_dist = find_k_nearest(k=k, point_star=sun)
+	print_elements(max_heap, star_dist, k=k)
 
 if __name__ == '__main__':
 	k = int(sys.argv[1])
