@@ -60,7 +60,7 @@ To create a findstars service with quick response time. We must  do the pre proc
 4. Respond to a query for k nearest neighbors quickly. ***Time complexity: O(logn)***
 
 ### Design:
-![Alt text](./q2_design.pdf)
+![Design Doc](./q2_design.pdf)
 
 ### Run Instructions:
 Steps 1 and 2 can be skipped if already performed question1
