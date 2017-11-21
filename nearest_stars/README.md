@@ -24,7 +24,6 @@ https://github.com/astronexus/HYG-Database
 	temptation is too great.
 
 ## Assumptions:
-
 1. The x, y, z coordinates are always decimal numbers and not empty
 2. The x, y, z coordinates are always on the 17, 18, 19 indexes of the input file and star name field in at index 6
 3. The suns name is 'Sol' reference: ```http://earthsky.org/space/what-is-the-suns-name```
@@ -35,20 +34,18 @@ https://github.com/astronexus/HYG-Database
 8. No adversial user, all the parameters to the program are in order and of the correct type
 9. Argument k is an integer
 
-## Solutions: 
-
-## Question 1
-1. Steps:
-	1. Stream through the data from stdin (time complexity O(n))
-	2. As we stream through the data keep a k sized max heap
-	3. If the new data distance is less than or equal to the max element of the max heap, push the new data distance and pop the maximum element from the max heap (time complexity 2 x O(logk))
-	4. The max heap contains the k closest points to the sun (space complexity O(k))
-	5. We keep a has map with {distance, [list of stars at that distance]} for some convenient print methods
-	Total Time Complexity: O(nlogk)
-	Total Space Complexity: O(k) 
-	6. Run Instructions: Input parameters: k: the number of nearest neighbors to be found:
-		1. clone the git repo and from the folder ```.../data_engineer/nearest_star/```  
-		2. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors.
+##Solution to question1
+1. Stream through the data from stdin (time complexity O(n))
+2. As we stream through the data keep a k sized max heap
+3. If a new point distance is less than or equal to the max element of the max heap, push the new data distance and pop the maximum element from the max heap (time complexity 2 x O(logk))
+4. The max heap contains the k closest points to the sun (space complexity O(k))
+5. We keep a has map with {distance, [list of stars at that distance]} for a convenient print method
+	***Total Time Complexity: O(nlogk)
+	Total Space Complexity: O(k)***
+6. Run Instructions: Input parameters: k: the number of nearest neighbors to be found
+	1. clone the git repo
+	2. CD to the directory ```.../data_engineer/nearest_star/```  
+	3. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors.
    Check the q1.png image for runtime metrics.
 
 ## Question 2
