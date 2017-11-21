@@ -44,7 +44,9 @@ https://github.com/astronexus/HYG-Database
 	***Total Time Complexity: O(nlogk)
 	Total Space Complexity: O(k)***
 
-### Run Instructions: Input parameters: k: the number of nearest neighbors to be found
+### Run Instructions: 
+***Input parameters:*** 
+	* k: the number of nearest neighbors to be found
 1. clone the git repo
 2. CD to the directory ```.../data_engineer/nearest_star/```  
 3. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors.
@@ -59,6 +61,9 @@ To create a findstars service with quick response time. We must  do the pre proc
 
 ### Run Instructions:
 Steps 1 and 2 can be skipped if already performed question1
+***Input parameters:*** k: the number of nearest neighbors to be found
+	* k: the number of nearest neighbors to be found
+	* 
 1. clone the git repo
 2. CD to the directory ```.../data_engineer/nearest_star/``` 
 3. Preprocess the data using the command
@@ -69,7 +74,7 @@ Steps 1 and 2 can be skipped if already performed question1
 3. ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` 
 
 ### Other options:
-1. Since our dimensions are small kd-tree will be sufficient, but for higher dimensions we can consider another advanced options. ***annoy***is used to find nearest neighbors in high dimensions, uses kd-tree along with priority queue approach. If we start a micro service and keep the service running with the index or data in memory we can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
+1. Since our dimensions are small kd-tree will be sufficient, but for higher dimensions we can consider another advanced options. ***annoy*** is used to find nearest neighbors in high dimensions, uses kd-tree along with priority queue approach. If we start a micro service and keep the service running with the data in memory we can do quick approximate lookups.
 	* pros: 
 		* easy to use and widely addopted
 		* Uses static file (small size) as indexes
