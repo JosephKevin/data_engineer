@@ -46,7 +46,7 @@ https://github.com/astronexus/HYG-Database
 
 ### Run Instructions: 
 ***Input parameters:*** 
-	* k: the number of nearest neighbors to be found
+* k: the number of nearest neighbors to be found
 1. clone the git repo
 2. CD to the directory ```.../data_engineer/nearest_star/```  
 3. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors.
@@ -62,10 +62,10 @@ To create a findstars service with quick response time. We must  do the pre proc
 ### Run Instructions:
 Steps 1 and 2 can be skipped if already performed question1
 ***Input parameters:*** 
-	* k: the number of nearest neighbors to be found
-	* x: the x coordinate of the query point
-	* y: the y coordinate of the query point
-	* z: the z coordinate of the query point
+* k: the number of nearest neighbors to be found
+* x: the x coordinate of the query point
+* y: the y coordinate of the query point
+* z: the z coordinate of the query point
 1. clone the git repo
 2. CD to the directory ```.../data_engineer/nearest_star/``` 
 3. Preprocess the data using the command ```gunzip -c hygdata_v3.csv.gz| python pre_process.py```
