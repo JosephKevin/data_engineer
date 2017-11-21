@@ -48,6 +48,11 @@ This layer accepts messages in (key, value) format and becomes a producer for th
 
 ### Collection layer:
 This layer accepts the (key, value) messages from the producers and queues them, which are collected by the consumers (in our case the processing and ingest layer). This layer can be implemented using kafka or google pub/sub or AWS services. Using an open source tool gives more control but requires lot of developer time, whereas using a managed service requires less developer time but provides us less control.
+***pros:***
+* Ensures message delivery downstream
+***cons:***
+* Managing the partitions among topics is time consuming (not applicable in case of managed services)
+* expensive (not applicable in case of open source implementation)
 
 ### Processing and Ingest layer:
 This is a consumer of the collection layer. We use spark streaming which is a consumer of the collection layer. Here we operate on a one hour window and for each hour windowed dataframe we perform a dedupe among the records, group by on key, date and hour_of_day(0-24) and get the following metrics at a key, date and hour_of_day level
@@ -57,9 +62,17 @@ This is a consumer of the collection layer. We use spark streaming which is a co
 * max
 * median
 * average
+
 Then the data at key, date and hour_of_day level is pushed into a database
+***pros:***
+* Data processed with an approximate one hour delay.
+***cons:***
+* Not exactly real time (eg, if the query service makes a request for data at time 5:55PM no data will be available for the 5 PM time)
+* The hour level aggregation will only be performed after the hour is complete, which means that there is a lag time of more than an hour between real time and data in our database layer.
 
 ### Database layer:
 The processing and ingest layer pushed data into this layer. We can store it in a highly available, distributed and scalable database (eg: bigquery, redshift)
 
+## Solution for query service:
+![Design Doc](./query_service.pdf)
 
