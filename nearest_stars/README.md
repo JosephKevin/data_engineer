@@ -43,36 +43,33 @@ https://github.com/astronexus/HYG-Database
 5. We keep a has map with {distance, [list of stars at that distance]} for a convenient print method
 	***Total Time Complexity: O(nlogk)
 	Total Space Complexity: O(k)***
-6. Run Instructions: Input parameters: k: the number of nearest neighbors to be found
-	1. clone the git repo
-	2. CD to the directory ```.../data_engineer/nearest_star/```  
-	3. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors.
+
+### Run Instructions: Input parameters: k: the number of nearest neighbors to be found
+1. clone the git repo
+2. CD to the directory ```.../data_engineer/nearest_star/```  
+3. Run the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars.py 10``` to get 10 nearest neighbors.
    Check the q1.png image for runtime metrics.
 
-## Question 2
-1. k nearest neighbors is a topic of research, especially for higher dimensions, but since we have only 3 dimensions we have a few options each with its pros and cons.
+## Solution to question2
+To create a findstars service with quick response time. We must  do the pre processing of data before hand and only run a quick lookup against the preprocessed data for a query. A suitable data structure to store spatial data for small dimensions(dimensions< 20) for quick lookup is kd-tree. 
+1. Construct a kd tree from the stars data. ***Time complexity: O(nlogn)***
+2. Store the processed data in the disk.
+3. Start a micro service to serve query request and keep the processed in memory for quick access. ***Space complexity: O(n)***
+4. Respond to a query for k nearest neighbors quickly. ***Time complexity: O(logn)***
 
-	***Option 1:*** Follow solution 1 approach and loop through the list keeping a k sized max heap.
-	* pros: Guaranteed correct result
-	* cons: time complexity O(nlogk), for large number of start(n) performance may suffer
+### Run Instructions:
+Steps 1 and 2 can be skipped if already performed question1
+1. clone the git repo
+2. CD to the directory ```.../data_engineer/nearest_star/``` 
+3. Preprocess the data using the command
 
-	***Option 2:*** Use a kd-tree structure to map the coordinates into 3d space.
-	* pros: time complexity of O(log n)
-	* cons: 
-		* give approximate nearest neighbors, may miss some neighbors
-		* requires pre processing the data
-	* reference: 
-		* ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` 
-		* ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` 
-		* ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```
+### References:
+1. ```http://andrewd.ces.clemson.edu/courses/cpsc805/references/nearest_search.pdf```
+2. ```https://en.wikipedia.org/wiki/K-d_tree#Nearest_neighbour_search``` 
+3. ```https://www.youtube.com/watch?v=TLxWtXEbtFE``` 
 
-	***Option 3:*** scikit learn knn
-	* pros: stable library
-	* cons: does not scale well to large datasets approximate algorithm training required
-	* reference:
-		* ```http://scikit-learn.org/stable/modules/neighbors.html```
-
-	***Option 4:*** Open source library ```annoy``` is used to find nearest neighbors in high dimensions, uses kd-tree along with priority queue approach. If we start a micro service and keep the service running with the index or data in memory we can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
+### Other options:
+1. Since our dimensions are small kd-tree will be sufficient, but for higher dimensions we can consider another advanced options. ***annoy***is used to find nearest neighbors in high dimensions, uses kd-tree along with priority queue approach. If we start a micro service and keep the service running with the index or data in memory we can do lookups in O(log(n)+k) time which is much faster than the approach in question 1.
 	* pros: 
 		* easy to use and widely addopted
 		* Uses static file (small size) as indexes
@@ -83,10 +80,3 @@ https://github.com/astronexus/HYG-Database
 	* reference:
 		* ```https://github.com/spotify/annoy``` 
 		* ```https://www.youtube.com/watch?v=QkCCyLW0ehU&t=2447s```
-	* Run Instructions: Implemented Option 4's algorithm
-		1. Input Parameters: k : the number of nearest neighbors to be found
-						  point_star: the name of the star whose neighbors are to be found.    
-			A service to get k closest stars to a given star has been implemented using the library annoy. 
-		2. clone the git repo and from the folder ```.../data_engineer/nearest_star/``` run the command ```pip install annoy```
-		3. preprocess the data using the command ```gunzip -c hygdata_v3.csv.gz | python k_nearest_stars_pre_process.py``` 
-		4. Run the query ```python3 knn_query.py 10 Sol```. Check the q4_option4.png for runtime metrics.
