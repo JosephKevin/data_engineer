@@ -29,7 +29,6 @@ def pre_process(leaf_size=40, processed_data=r'./proc_data.tree', lookup=r'./id_
 	tree = spatial.KDTree(stars, leafsize=leaf_size)
 	utils.save_as_pickle(data=tree, pickle_file=processed_data)
 	utils.save_as_pickle(data=id_star_dct, pickle_file=lookup)
-	
 
 if __name__ == '__main__':
 	pre_process()
