@@ -40,16 +40,20 @@ windows, not sliding windows)
 
 ### Serverless producer layer:
 This layer accepts messages in (key, value) format and becomes a producer for the collection layer. Serverless architecture was chosen. Some of its pros and cons
+
 ***pros:***
 * Easy to scale
 * If AWS Lambda or Google Cloud Function is used, these services are managed and do not require lot of developer hours
+
 ***cons:***
 * vendor lock in, ie the service is highly dependent on the vendor(eg google or AWS)
 
 ### Collection layer:
 This layer accepts the (key, value) messages from the producers and queues them, which are collected by the consumers (in our case the processing and ingest layer). This layer can be implemented using kafka or google pub/sub or AWS services. Using an open source tool gives more control but requires lot of developer time, whereas using a managed service requires less developer time but provides us less control.
+
 ***pros:***
 * Ensures message delivery downstream
+
 ***cons:***
 * Managing the partitions among topics is time consuming (not applicable in case of managed services)
 * expensive (not applicable in case of open source implementation)
@@ -64,8 +68,10 @@ This is a consumer of the collection layer. We use spark streaming which is a co
 * average
 
 Then the data at key, date and hour_of_day level is pushed into a database
+
 ***pros:***
 * Data processed with an approximate one hour delay.
+
 ***cons:***
 * Not exactly real time (eg, if the query service makes a request for data at time 5:55PM no data will be available for the 5 PM time)
 * The hour level aggregation will only be performed after the hour is complete, which means that there is a lag time of more than an hour between real time and data in our database layer.
