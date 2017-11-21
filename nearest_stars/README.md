@@ -61,6 +61,7 @@ To create a findstars service with quick response time. We must  do the pre proc
 
 ### Run Instructions:
 Steps 1 and 2 can be skipped if already performed question1
+
 ***Input parameters:*** 
 * k: the number of nearest neighbors to be found
 * x: the x coordinate of the query point
