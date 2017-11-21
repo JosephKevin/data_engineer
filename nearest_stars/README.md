@@ -68,8 +68,7 @@ Steps 1 and 2 can be skipped if already performed question1
 	* z: the z coordinate of the query point
 1. clone the git repo
 2. CD to the directory ```.../data_engineer/nearest_star/``` 
-3. Preprocess the data using the command ```gunzip -c hygdata_v3.c│   74a699d..fb52136  master -> master
-sv.gz| python pre_process.py```
+3. Preprocess the data using the command ```gunzip -c hygdata_v3.csv.gz| python pre_process.py```
 4. Query for 10 nearest points with x = 0.000005, y = 0.0, z = 0.0 using the command ```python find_stars.py 10 0.000005 0.0 0.0```
 
 ### References:
