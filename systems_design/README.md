@@ -34,3 +34,32 @@ windows, not sliding windows)
 * The format of the JSON endpoint URI should be: ```http://hostname/<key>/<stat_type>/<date>/<hour>```
 * stat_type is one of the following aggregate functions: average, min, max, median
 * Users should be able to interact with the endpoint using curl
+
+## Solution for collection service
+![Design Doc](./collection_service.pdf)
+
+### Serverless producer layer:
+This layer accepts messages in (key, value) format and becomes a producer for the collection layer. Serverless architecture was chosen. Some of its pros and cons
+***pros:***
+* Easy to scale
+* If AWS Lambda or Google Cloud Function is used, these services are managed and do not require lot of developer hours
+***cons:***
+* vendor lock in, ie the service is highly dependent on the vendor(eg google or AWS)
+
+### Collection layer:
+This layer accepts the (key, value) messages from the producers and queues them, which are collected by the consumers (in our case the processing and ingest layer). This layer can be implemented using kafka or google pub/sub or AWS services. Using an open source tool gives more control but requires lot of developer time, whereas using a managed service requires less developer time but provides us less control.
+
+### Processing and Ingest layer:
+This is a consumer of the collection layer. We use spark streaming which is a consumer of the collection layer. Here we operate on a one hour window and for each hour windowed dataframe we perform a dedupe among the records, group by on key, date and hour_of_day(0-24) and get the following metrics at a key, date and hour_of_day level
+* number of events
+* sum of all the events
+* min 
+* max
+* median
+* average
+Then the data at key, date and hour_of_day level is pushed into a database
+
+### Database layer:
+The processing and ingest layer pushed data into this layer. We can store it in a highly available, distributed and scalable database (eg: bigquery, redshift)
+
+
