@@ -96,3 +96,7 @@ A serverless architecture was chosen. The function that gets invoked on a query 
 ## Problems:
 As we increase utilization of the system by 10x, 100x, 1000x the collection service may break at the link between the collection layer and the processing and ingest layer, because the processing and ingest layer may not be able to keep up with the incoming volume. In such a case we can hash the incoming keys into different topics in the collection layer and keep a seperate processing and ingest layer for the topics but ultimately all the processing and ingest layer writes to the same databse layer. This is an involved effort, if we use a managed service we do not have to spend a lot of time tuning the scaling issues.
 
+### References:
+1. https://www.youtube.com/watch?v=KiZvHk3ChtM&t=1695s
+2. https://aws.amazon.com/
+3. https://cloud.google.com/
