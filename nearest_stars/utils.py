@@ -1,5 +1,21 @@
 import sys
 import math
+import pickle
+
+def save_as_pickle(data, pickle_file):
+	"""
+	Helper function to save the data as a pickle file
+
+	Args:
+		data: the data to be saved
+		pickle_file: the location where the pickle file is saved to
+
+	Return:
+		No return
+	"""
+	pickle_out = open(pickle_file,'wb')
+	pickle.dump(data, pickle_out)
+	pickle_out.close()
 
 def euclidean_dist(x, y):
 	"""
