@@ -20,7 +20,7 @@ def find_k_nearest(k, point_star):
 	"""
 	max_heap = []
 	star_dist = defaultdict(list)
-	# skip header and sun column
+	# skip header and sun row
 	utils.skip_line(2)
 	for line in sys.stdin:
 		star_name, x, y, z = utils.parse_line(line=line)
