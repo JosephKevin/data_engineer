@@ -33,6 +33,7 @@ https://github.com/astronexus/HYG-Database
 7. Distance is measured by euclidean distance
 8. No adversial user, all the parameters to the program are in order and of the correct type
 9. Argument k is an integer
+10. k must be less than or equal to number of stars.
 
 ## Solution to question1
 1. Stream through the data from stdin (time complexity O(n))
