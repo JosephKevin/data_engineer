@@ -10,7 +10,7 @@ This code base contains one folder for each SQL, Nearest stars and Systems desig
 5. annoy(optional)
 
 Attached a data_eng.yml file which has a comprehensive list to create a conda environment using that yml file use
-1. ```conda env create -f daga_eng.yml```
+1. ```conda env create -f data_eng.yml```
 2. ```source activate data_eng```
 
 ### reference:
